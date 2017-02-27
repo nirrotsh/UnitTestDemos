@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary", "MyLibrary.csproj", "{007A67A6-6267-4A75-BA51-9D2EAAD2FAEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary", "MyLibrary\MyLibrary.csproj", "{007A67A6-6267-4A75-BA51-9D2EAAD2FAEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibraryTests", "..\MyLibraryTests\MyLibraryTests.csproj", "{7698915C-7AF2-47CB-8669-0EF3F4636200}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibraryTests", "MyLibraryTests\MyLibraryTests.csproj", "{7698915C-7AF2-47CB-8669-0EF3F4636200}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
