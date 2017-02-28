@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NSubstitute, Version=2.0.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSubstitute.2.0.2\lib\net45\NSubstitute.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -57,12 +61,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecondStep_StubsTests.cs" />
     <Compile Include="Stubs\PublisherStub.cs" />
+    <Compile Include="ThirdStep_MockTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyLibrary\MyLibrary.csproj">
       <Project>{007A67A6-6267-4A75-BA51-9D2EAAD2FAEE}</Project>
       <Name>MyLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

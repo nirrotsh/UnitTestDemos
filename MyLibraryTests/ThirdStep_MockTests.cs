@@ -1,21 +1,19 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyLibrary;
 using MyLibrary.Model;
-using MyLibraryTests.Stubs;
+using MyLibrary;
 using NSubstitute;
 
 namespace MyLibraryTests
 {
     [TestClass]
-    public class SecondStep_StubsTests
+    public class ThirdStep_MockTests
     {
         [TestMethod]
-        public void ShouldBeAbletoCloseIncident()
+        public void ShouldSendNotificationOnClosingOpenIncident()
         {
-            //Preparing
-            IPublisher publisherStub = new PublisherStub();
-            var subj = new SecondStep_Stubs(publisherStub);
+            var publisherMock = Substitute.For<IPublisher>();   //This is the mock
+            var subj = new SecondStep_Stubs(publisherMock);
             var incident = new IncidentData
             {
                 IsClosed = false
@@ -26,6 +24,7 @@ namespace MyLibraryTests
 
             //Assert
             Assert.IsTrue(incident.IsClosed, "Incident Should be closed");
+            publisherMock.Received(1).Publish(Arg.Any<INotificationData>());
         }
     }
 }
