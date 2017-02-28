@@ -10,5 +10,6 @@ namespace MyLibrary.Model
     {
         public DateTime LastActivityTime { get; set; }
         public bool IsEscalated { get; set; }
+        public bool IsClosed { get; set; }
     }
 }
