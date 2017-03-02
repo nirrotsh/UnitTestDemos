@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>mscorlib.Prig</RootNamespace>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>C:\ProgramData\chocolatey\lib\Prig\tools\Urasandesu.Prig.snk</AssemblyOriginatorKeyFile>
+    <OutputPath>C:\Projects\Temp\UnitTestDemos\MyLibraryTests\bin\Debug\.</OutputPath>
+    <DefineConstants>_M_AMD64;_NET_4</DefineConstants>
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <AssemblyName>mscorlib.v4.0.30319.v4.0.0.0.AMD64.Prig</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Urasandesu.NAnonym">
+      <HintPath>C:\ProgramData\chocolatey\lib\Prig\lib\Urasandesu.NAnonym.dll</HintPath>
+    </Reference>
+    <Reference Include="Urasandesu.Prig.Framework">
+      <HintPath>C:\ProgramData\chocolatey\lib\Prig\lib\Urasandesu.Prig.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll</HintPath>
+    </Reference>
+    <Reference Include="Urasandesu.Prig.Delegates">
+      <HintPath>C:\ProgramData\chocolatey\lib\Prig\lib\Urasandesu.Prig.Delegates.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="**/*.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

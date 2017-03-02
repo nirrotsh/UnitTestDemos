@@ -36,11 +36,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="mscorlib.v4.0.30319.v4.0.0.0.AMD64.Prig" Condition="'$(Platform)|$(Prefer32Bit)' == 'AnyCPU|false'" />
+    <Reference Include="mscorlib.v4.0.30319.v4.0.0.0.x86.Prig" Condition="'$(Platform)|$(Prefer32Bit)' == 'AnyCPU|true'" />
     <Reference Include="NSubstitute, Version=2.0.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
       <HintPath>..\packages\NSubstitute.2.0.2\lib\net45\NSubstitute.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="Urasandesu.NAnonym, Version=0.2.0.0, Culture=neutral, PublicKeyToken=ce9e95b04334d5fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prig.2.3.1\lib\Urasandesu.NAnonym.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Urasandesu.Prig.Delegates, Version=0.1.0.0, Culture=neutral, PublicKeyToken=acabb3ef0ebf69ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prig.2.3.1\lib\Urasandesu.Prig.Delegates.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Urasandesu.Prig.Delegates.0404, Version=0.1.0.0, Culture=neutral, PublicKeyToken=acabb3ef0ebf69ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prig.2.3.1\lib\Urasandesu.Prig.Delegates.0404.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Urasandesu.Prig.Delegates.0804, Version=0.1.0.0, Culture=neutral, PublicKeyToken=acabb3ef0ebf69ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prig.2.3.1\lib\Urasandesu.Prig.Delegates.0804.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Urasandesu.Prig.Delegates.1205, Version=0.1.0.0, Culture=neutral, PublicKeyToken=acabb3ef0ebf69ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prig.2.3.1\lib\Urasandesu.Prig.Delegates.1205.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Urasandesu.Prig.Framework, Version=0.1.0.0, Culture=neutral, PublicKeyToken=acabb3ef0ebf69ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prig.2.3.1\lib\Urasandesu.Prig.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -62,6 +88,7 @@
     <Compile Include="SecondStep_StubsTests.cs" />
     <Compile Include="Stubs\PublisherStub.cs" />
     <Compile Include="ThirdStep_MockTests.cs" />
+    <Compile Include="FourthStep_ShimTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyLibrary\MyLibrary.csproj">
@@ -70,6 +97,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="mscorlib.v4.0.30319.v4.0.0.0.prig" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
@@ -92,6 +120,14 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="BeforeRebuild">
+    <Exec Condition="'$(Platform)|$(Prefer32Bit)' == 'AnyCPU|true'" Command="cmd /c &quot; &quot;%VS140COMNTOOLS%VsDevCmd.bat&quot; &amp; %windir%\system32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoLogo -NoProfile -File &quot;%URASANDESU_PRIG_PACKAGE_FOLDER%\tools\Invoke-PilotStubber.ps1&quot; -ReferenceFrom &quot;@('%URASANDESU_PRIG_PACKAGE_FOLDER%\lib\Urasandesu.NAnonym.dll','%URASANDESU_PRIG_PACKAGE_FOLDER%\lib\Urasandesu.Prig.Framework.dll')&quot; -AssemblyFrom &quot;C:\Windows\Microsoft.Net\assembly\GAC_32\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll&quot; -TargetFrameworkVersion v4.5.2 -KeyFile &quot;%URASANDESU_PRIG_PACKAGE_FOLDER%\tools\Urasandesu.Prig.snk&quot; -OutputPath &quot;$(TargetDir).&quot; -Settings &quot;$(ProjectDir)mscorlib.v4.0.30319.v4.0.0.0.prig&quot; -BuildTarget BeforeRebuild &quot;" />
+    <Exec Condition="'$(Platform)|$(Prefer32Bit)' == 'AnyCPU|false'" Command="cmd /c &quot; &quot;%VS140COMNTOOLS%VsDevCmd.bat&quot; &amp; %windir%\SysNative\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoLogo -NoProfile -File &quot;%URASANDESU_PRIG_PACKAGE_FOLDER%\tools\Invoke-PilotStubber.ps1&quot; -ReferenceFrom &quot;@('%URASANDESU_PRIG_PACKAGE_FOLDER%\lib\Urasandesu.NAnonym.dll','%URASANDESU_PRIG_PACKAGE_FOLDER%\lib\Urasandesu.Prig.Framework.dll')&quot; -AssemblyFrom &quot;C:\Windows\Microsoft.Net\assembly\GAC_64\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll&quot; -TargetFrameworkVersion v4.5.2 -KeyFile &quot;%URASANDESU_PRIG_PACKAGE_FOLDER%\tools\Urasandesu.Prig.snk&quot; -OutputPath &quot;$(TargetDir).&quot; -Settings &quot;$(ProjectDir)mscorlib.v4.0.30319.v4.0.0.0.prig&quot; -BuildTarget BeforeRebuild &quot;" />
+  </Target>
+  <Target Name="BeforeBuild">
+    <Exec Condition="'$(Platform)|$(Prefer32Bit)' == 'AnyCPU|true'" Command="cmd /c &quot; &quot;%VS140COMNTOOLS%VsDevCmd.bat&quot; &amp; %windir%\system32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoLogo -NoProfile -File &quot;%URASANDESU_PRIG_PACKAGE_FOLDER%\tools\Invoke-PilotStubber.ps1&quot; -ReferenceFrom &quot;@('%URASANDESU_PRIG_PACKAGE_FOLDER%\lib\Urasandesu.NAnonym.dll','%URASANDESU_PRIG_PACKAGE_FOLDER%\lib\Urasandesu.Prig.Framework.dll')&quot; -AssemblyFrom &quot;C:\Windows\Microsoft.Net\assembly\GAC_32\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll&quot; -TargetFrameworkVersion v4.5.2 -KeyFile &quot;%URASANDESU_PRIG_PACKAGE_FOLDER%\tools\Urasandesu.Prig.snk&quot; -OutputPath &quot;$(TargetDir).&quot; -Settings &quot;$(ProjectDir)mscorlib.v4.0.30319.v4.0.0.0.prig&quot; -BuildTarget BeforeBuild &quot;" />
+    <Exec Condition="'$(Platform)|$(Prefer32Bit)' == 'AnyCPU|false'" Command="cmd /c &quot; &quot;%VS140COMNTOOLS%VsDevCmd.bat&quot; &amp; %windir%\SysNative\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoLogo -NoProfile -File &quot;%URASANDESU_PRIG_PACKAGE_FOLDER%\tools\Invoke-PilotStubber.ps1&quot; -ReferenceFrom &quot;@('%URASANDESU_PRIG_PACKAGE_FOLDER%\lib\Urasandesu.NAnonym.dll','%URASANDESU_PRIG_PACKAGE_FOLDER%\lib\Urasandesu.Prig.Framework.dll')&quot; -AssemblyFrom &quot;C:\Windows\Microsoft.Net\assembly\GAC_64\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll&quot; -TargetFrameworkVersion v4.5.2 -KeyFile &quot;%URASANDESU_PRIG_PACKAGE_FOLDER%\tools\Urasandesu.Prig.snk&quot; -OutputPath &quot;$(TargetDir).&quot; -Settings &quot;$(ProjectDir)mscorlib.v4.0.30319.v4.0.0.0.prig&quot; -BuildTarget BeforeBuild &quot;" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
