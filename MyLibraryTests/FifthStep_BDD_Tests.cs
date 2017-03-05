@@ -45,5 +45,6 @@ namespace MyLibraryTests
 
         It Should_add_autoDeployed_tasks_to_incident = () => incident.Tasks.Count.ShouldEqual(deployedTasks.Count);
         It Should_send_tasksAdded_Notification = () => publisher.Received(1).Publish(Arg.Any<INotificationData>());
+        It Should_update_incident_in_db = () => repo.Received(1).SaveOrUpdateIncidentTasks(incident);
     }
 }
