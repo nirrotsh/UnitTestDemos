@@ -41,8 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FirstUnitTestDemo.cs" />
+    <Compile Include="IncidentAutomation.cs" />
+    <Compile Include="Model\IIncidentRepository.cs" />
     <Compile Include="Model\IncidentData.cs" />
     <Compile Include="Model\IncidentNotification.cs" />
+    <Compile Include="Model\IncidentTaskData.cs" />
     <Compile Include="Model\INotificationData.cs" />
     <Compile Include="Model\IPublisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
